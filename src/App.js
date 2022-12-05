@@ -19,19 +19,14 @@ class App {
   };
 
   #readWinningNumberCallback = (winningNumbers) => {
-    winningNumbers.forEach((input) => Number(input));
-
     this.#lottoMachine.setWinningNumbers(winningNumbers);
 
-    InputView.readBonusNumber(
-      this.#readBonusNumberCallback,
-      this.#lottoMachine.getWinningNumbers()
-    );
+    InputView.readBonusNumber(this.#readBonusNumberCallback);
   };
 
   #readBonusNumberCallback = (bonusNumber) => {
     this.#lottoMachine.setBonusNumber(bonusNumber);
-    this.#lottoMachine.checkResult();
+    this.#lottoMachine.checkRankResult();
     this.#lottoMachine.calculateRate();
 
     OutputView.printResult(this.#lottoMachine);

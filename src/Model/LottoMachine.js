@@ -55,18 +55,18 @@ class LottoMachine {
     }
   }
 
-  validateWinningNumbers(winningNumber) {
-    if (winningNumber.length !== VALUE.NUMBER_OF_LOTTO) {
+  validateWinningNumbers(winningNumbers) {
+    if (winningNumbers.length !== VALUE.NUMBER_OF_LOTTO) {
       throw new Error("[ERROR] 당첨 번호의 개수는 6개입니다.");
     }
 
-    const uniqueNumbers = new Set(winningNumber);
+    const uniqueNumbers = new Set(winningNumbers);
     if ([...uniqueNumbers].length !== VALUE.NUMBER_OF_LOTTO) {
       throw new Error("[ERROR] 당첨 번호는 중복될 수 없습니다.");
     }
 
-    winningNumber.forEach((number) => {
-      this.#checkLottoRange(number.toString());
+    winningNumbers.forEach((number) => {
+      this.#checkLottoRange(number);
     });
   }
 
@@ -96,7 +96,7 @@ class LottoMachine {
     });
   }
 
-  checkResult() {
+  checkRankResult() {
     this.#lottos.forEach((lotto) => {
       const sameNumbers = this.#getSameNumbers(lotto);
       if (sameNumbers === VALUE.STANDARD_FIFTH) {
