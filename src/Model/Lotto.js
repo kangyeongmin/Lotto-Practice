@@ -1,4 +1,4 @@
-const { VALUE } = require("./constant");
+const { VALUE } = require("../constant");
 
 class Lotto {
   #numbers;
