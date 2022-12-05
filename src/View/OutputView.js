@@ -1,5 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { COMMENT } = require("./constant");
+const { COMMENT } = require("../constant");
 
 const OutputView = {
   printLotto(lottos) {
@@ -10,13 +10,17 @@ const OutputView = {
     });
   },
 
-  printResult(result, rate) {
+  printResult(lottoMachine) {
     MissionUtils.Console.print(COMMENT.WINTITLE);
 
     COMMENT.RESULT_ARRAY.forEach((comment, index) => {
-      MissionUtils.Console.print(comment + result[index] + "개");
+      MissionUtils.Console.print(
+        comment + lottoMachine.getRankResult()[index] + "개"
+      );
     });
-    MissionUtils.Console.print("총 수익률은 " + rate + "%입니다.");
+    MissionUtils.Console.print(
+      "총 수익률은 " + lottoMachine.getRate() + "%입니다."
+    );
     MissionUtils.Console.close();
   },
 };
